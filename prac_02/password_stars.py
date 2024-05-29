@@ -1,23 +1,23 @@
-""""CP1404 sandbox password stars"""
+"""Password check and display stars's."""
+MINIMUM_LENGTH = 8
 
 
 def main():
-    minimum_length = 8
-    password = get_valid_password(minimum_length)
+    password = get_valid_password()
     print_stars(password)
 
 
 def print_stars(password):
-    """Print *'s length of password."""
+    """Print star's length of password."""
     length = len(password)
     print('*' * length)
 
 
-def get_valid_password(minimum_length):
-    """Get password of minimum length or greater."""
+def get_valid_password():
+    """Get password of MINIMUM_LENGTH or greater."""
     password = input("Password: ")
-    while len(password) < minimum_length:
-        print(f"Invalid, must be at least {minimum_length} characters long")
+    while len(password) < MINIMUM_LENGTH:
+        print(f"Invalid, must be at least {MINIMUM_LENGTH} characters long")
         password = input("Password: ")
     return password
 
