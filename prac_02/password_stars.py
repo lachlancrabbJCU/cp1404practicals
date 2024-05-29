@@ -2,12 +2,19 @@
 
 
 def main():
-    minimum_length = 5
+    minimum_length = 8
     password = get_valid_password(minimum_length)
-    print('*' * len(password))
+    print_stars(password)
+
+
+def print_stars(password):
+    """Print *'s length of password."""
+    length = len(password)
+    print('*' * length)
 
 
 def get_valid_password(minimum_length):
+    """Get password of minimum length or greater."""
     password = input("Password: ")
     while len(password) < minimum_length:
         print(f"Invalid, must be at least {minimum_length} characters long")
