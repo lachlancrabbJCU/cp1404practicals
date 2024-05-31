@@ -8,9 +8,16 @@ MENU = """(G)et score
 def main():
     print(MENU)
     choice = input(">>> ").upper()
+    has_score_set: bool = False
+    score = 0
     while choice != "Q":
+        if not has_score_set and choice == ("P" or "S"):
+            print("First please give a score")
+            score = get_valid_score()
+            has_score_set = True
         if choice == "G":
             score = get_valid_score()
+            has_score_set = True
         elif choice == "P":
             category = determine_category(score)
             print(f"Score of {score} is {category}")
