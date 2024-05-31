@@ -1,12 +1,11 @@
-"""
-CP1404/CP5632 - Practical 2 Temperatures
-"""
+"""Convert temperature units."""
 MENU = """C - Convert Celsius to Fahrenheit
 F - Convert Fahrenheit to Celsius
 Q - Quit"""
 
 
 def main():
+    """Convert temperature units."""
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
@@ -25,14 +24,21 @@ def main():
     print("Thank you.")
 
 
-def calculate_fahrenheit(celsius):
+def calculate_fahrenheit(celsius: float) -> float:
+    """Convert Celsius temperature to Fahrenheit."""
     fahrenheit = celsius * 9.0 / 5 + 32
     return fahrenheit
 
 
-def calculate_celsius(fahrenheit):
+def calculate_celsius(fahrenheit: float) -> float:
+    """Convert Fahrenheit to Celsius."""
     celsius = 5 / 9 * (fahrenheit - 32)
     return celsius
 
 
 main()
+
+
+
+
+
