@@ -1,9 +1,9 @@
-"""Get and categorise score"""
+"""Get and categorise score."""
 import random
 
 
 def main():
-    """Get a score and """
+    """Get a score and display score category."""
     score = float(input("Enter score: "))
     score_category = determine_category(score)
     print(f"Score of {score} is {score_category}")
