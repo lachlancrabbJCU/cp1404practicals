@@ -1,4 +1,4 @@
-"""mod doc"""
+"""Score menu to get and display score."""
 MENU = """(G)et score
 (P)rint result
 (S)how stars
@@ -6,11 +6,13 @@ MENU = """(G)et score
 
 
 def main():
+    """Get and display score."""
     print(MENU)
     choice = input(">>> ").upper()
     has_score_set: bool = False
     score = 0
     while choice != "Q":
+        # Check if score has been set
         if not has_score_set and choice == ("P" or "S"):
             print("First please give a score")
             score = get_valid_score()
@@ -22,7 +24,7 @@ def main():
             category = determine_category(score)
             print(f"Score of {score} is {category}")
         elif choice == "S":
-            print_stars(score)  # Print score number of stars
+            print_stars(score)
         else:
             print("Invalid Choice.")
         print(MENU)
