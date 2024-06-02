@@ -1,8 +1,9 @@
-"""Password check and display stars's."""
+"""Password check and display star's."""
 MINIMUM_LENGTH = 8
 
 
 def main():
+    """Get password and display stars of passwords length."""
     password = get_valid_password()
     print_stars(password)
 
