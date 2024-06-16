@@ -32,10 +32,10 @@ def load_data():
 
 def print_subject_details(data):
     """Print subject details while handling string width."""
-    name_max_length = max((len(parts[1]) for parts in data))  # find max width of name
-    students_max_length = max((len(str(parts[2])) for parts in data))  # find max width of number of students
+    name_max_width = max((len(parts[1]) for parts in data))  # find max width of name
+    students_max_width = max((len(str(parts[2])) for parts in data))  # find max width of number of students
     for parts in data:
-        print(f"{parts[0]} is taught by {parts[1]:{name_max_length}} and has {parts[2]:{students_max_length}} students")
+        print(f"{parts[0]} is taught by {parts[1]:{name_max_width}} and has {parts[2]:{students_max_width}} students")
 
 
 main()
