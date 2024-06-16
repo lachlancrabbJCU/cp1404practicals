@@ -2,11 +2,13 @@
 
 
 def main():
+    """Get 5 integers and display information about them."""
     numbers = get_numbers()
     print_report(numbers)
 
 
 def print_report(numbers):
+    """Print information about numbers."""
     print(f"The first number is {numbers[0]}")
     print(f"The last number is {numbers[-1]}")
     print(f"The smallest number is {min(numbers)}")
@@ -15,6 +17,7 @@ def print_report(numbers):
 
 
 def get_numbers():
+    """Get and return a list of 5 integers."""
     numbers = []
     for i in range(5):
         number = int(input("number: "))
