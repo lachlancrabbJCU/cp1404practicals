@@ -7,6 +7,7 @@ FILENAME = "subject_data.txt"
 
 
 def main():
+    """Get subject data from file and print a formated output."""
     data = load_data()
     print_subject_details(data)
 
@@ -30,6 +31,7 @@ def load_data():
 
 
 def print_subject_details(data):
+    """Print subject details while handling string width."""
     name_max_length = max((len(parts[1]) for parts in data))  # find max width of name
     students_max_length = max((len(str(parts[2])) for parts in data))  # find max width of number of students
     for parts in data:
