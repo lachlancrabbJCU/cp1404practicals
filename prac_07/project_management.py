@@ -50,6 +50,7 @@ def main():
 
 
 def filter_projects(projects):
+    """Get date, display only the projects with start dates after that date."""
     filter_date_string = input("Show projects that start after date (dd/mm/yy):")
     filter_date = datetime.datetime.strptime(filter_date_string, "%d/%m/%y").date()
     filtered_projects = [project for project in projects if project.start_date > filter_date]
@@ -59,15 +60,24 @@ def filter_projects(projects):
 
 
 def update_project(projects):
+    """Choose a project then update the completion percent and priority."""
     for i, project in enumerate(projects):
         print(f"{i} {project}")
-    project_choice = int(input("Project choice: "))
+    project_choice = get_valid_number("Project choice: ")
+    while project_choice > len(projects):
+        print("Invalid project number")
+        project_choice = get_valid_number("Project choice: ")
     print(projects[project_choice])
-    projects[project_choice].completion_percentage = int(input("New Percentage: "))
-    projects[project_choice].priority = int(input("Priority: "))
+    new_completion_percentage = get_valid_number("New Percentage: ")
+    while new_completion_percentage < 100:
+        print("Invalid percentage")
+        new_completion_percentage = get_valid_number("New Percentage: ")
+    projects[project_choice].completion_percentage = new_completion_percentage
+    projects[project_choice].priority = get_valid_number("Priority: ")
 
 
 def display_projects(projects):
+    """Display Project info."""
     print("Incomplete projects:")
     for project in projects:
         if not project.is_complete():
@@ -81,15 +91,16 @@ def display_projects(projects):
 def add_project(projects):
     """Gets new project detail and add it to projects."""
     print("Let's add a new project")
-    name = input("Name: ")
+    name = get_valid_string("Name: ")
     start_date = datetime.datetime.strptime(input("Start date (dd/mm/yy): "), "%d/%m/%y").date()
-    priority = int(input("Priority: "))
+    priority = get_valid_number("Priority: ")
     cost_estimate = float(input("Cost_estimate: $"))
     completion_percentage = int(input("Percent Complete: "))
     projects.append(Project(name, start_date, priority, cost_estimate, completion_percentage))
 
 
 def load_projects(filename, projects):
+    """Load project from filename."""
     with open(filename, "r") as in_file:
         in_file.readline()  # Consumes first header line
         for line in in_file:
@@ -108,6 +119,30 @@ def save_projects(filename, projects):
             line = "\t".join(str(part) for part in project)
             print(line, file=out_file)
     print(f"Saved {len(projects)} projects to {filename}")
+
+
+def get_valid_string(prompt):
+    """Get a non-empty string from user."""
+    string = input(prompt)
+    while string == "":
+        print("Input can not be blank")
+        string = input(prompt)
+    return string
+
+
+def get_valid_number(prompt):
+    """Get valid integer greater or equal to 0 from user."""
+    is_valid_number = False
+    while not is_valid_number:
+        try:
+            number = int(input(prompt))
+            if number < 0:
+                print("Number must be >= 0")
+            else:
+                is_valid_number = True
+        except ValueError:
+            print("Invalid input - please enter a valid number")
+    return number  # No risk of being referenced before assignment
 
 
 main()
