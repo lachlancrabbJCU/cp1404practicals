@@ -5,6 +5,7 @@ Start Time: 20.30
 End Time:
 """
 from project import Project
+import datetime
 
 DEFAULT_FILENAME = "projects.txt"
 MENU = """- (L)oad projects  
@@ -72,7 +73,8 @@ def add_project(projects):
     """Gets new project detail and add it to projects."""
     print("Let's add a new project")
     name = input("Name: ")
-    start_date = input("Start date (dd/mm/yy): ")
+    date = input("Start date (dd/mm/yy): ")
+    start_date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
     priority = int(input("Priority: "))
     cost_estimate = float(input("Cost_estimate: $"))
     completion_percentage = int(input("Percent Complete: "))
@@ -84,7 +86,8 @@ def load_projects(filename, projects):
         in_file.readline()  # Consumes first header line
         for line in in_file:
             parts = line.strip().split("\t")
-            projects.append(Project(parts[0], parts[1], int(parts[2]), float(parts[3]), int(parts[4])))
+            start_date = datetime.datetime.strptime(parts[1], "%d/%m/%Y").date()
+            projects.append(Project(parts[0], start_date, int(parts[2]), float(parts[3]), int(parts[4])))
     print(f"Loaded {len(projects)} projects from {filename}")
 
 

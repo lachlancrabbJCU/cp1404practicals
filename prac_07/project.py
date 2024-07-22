@@ -1,7 +1,9 @@
 """
 CP1404 Week 07 Practical
 Project
+Estimate Time: 3 Hours
 """
+import datetime
 
 
 class Project:
@@ -16,5 +18,9 @@ class Project:
         self.completion_percentage = completion_percentage
 
     def __repr__(self):
-        return (f"{self.name}, start: {self.start_date}, priority {self.priority}, estimate: ${self.cost_estimate:.2f},"
-                f" completion: {self.completion_percentage}%")
+        return (
+            f"{self.name}, start: {self.start_date.strftime('%d/%m/%y')}, priority {self.priority}, estimate: ${self.cost_estimate:.2f},"
+            f" completion: {self.completion_percentage}%")
+
+    def is_complete(self):
+        return self.completion_percentage == 100
