@@ -34,7 +34,7 @@ def main():
         elif choice == "D":
             display_projects(projects)
         elif choice == "F":
-            pass
+            filter_projects(projects)
         elif choice == "A":
             add_project(projects)
         elif choice == "U":
@@ -47,6 +47,15 @@ def main():
     if save_query == "" or save_query == "Y" or save_query == "YES":
         save_projects(DEFAULT_FILENAME, projects)
     print("Thank you for using custom-built project management software.")
+
+
+def filter_projects(projects):
+    filter_date_string = input("Show projects that start after date (dd/mm/yy):")
+    filter_date = datetime.datetime.strptime(filter_date_string, "%d/%m/%y").date()
+    filtered_projects = [project for project in projects if project.start_date > filter_date]
+    filtered_projects.sort()
+    for project in filtered_projects:
+        print(project)
 
 
 def update_project(projects):
@@ -73,8 +82,7 @@ def add_project(projects):
     """Gets new project detail and add it to projects."""
     print("Let's add a new project")
     name = input("Name: ")
-    date = input("Start date (dd/mm/yy): ")
-    start_date = datetime.datetime.strptime(date, "%d/%m/%y").date()
+    start_date = datetime.datetime.strptime(input("Start date (dd/mm/yy): "), "%d/%m/%y").date()
     priority = int(input("Priority: "))
     cost_estimate = float(input("Cost_estimate: $"))
     completion_percentage = int(input("Percent Complete: "))
