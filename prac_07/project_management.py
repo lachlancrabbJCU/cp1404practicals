@@ -43,7 +43,7 @@ def main():
             print("Invalid Choice")
         print(MENU)
         choice = input(">>> ").upper()
-    save_query = f"Would you like to save to {DEFAULT_FILENAME}?".upper()
+    save_query = input(f"Would you like to save to {DEFAULT_FILENAME}?").upper()
     if save_query == "" or save_query == "Y" or save_query == "YES":
         save_projects(DEFAULT_FILENAME, projects)
     print("Thank you for using custom-built project management software.")
@@ -74,7 +74,7 @@ def add_project(projects):
     print("Let's add a new project")
     name = input("Name: ")
     date = input("Start date (dd/mm/yy): ")
-    start_date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
+    start_date = datetime.datetime.strptime(date, "%d/%m/%y").date()
     priority = int(input("Priority: "))
     cost_estimate = float(input("Cost_estimate: $"))
     completion_percentage = int(input("Percent Complete: "))
