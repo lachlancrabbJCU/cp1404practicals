@@ -33,7 +33,7 @@ def main():
         elif choice == "F":
             pass
         elif choice == "A":
-            pass
+            add_project(projects)
         elif choice == "U":
             pass
         else:
@@ -41,6 +41,16 @@ def main():
         print(MENU)
         choice = input(">>> ").upper()
     print("Thank you for using custom-built project management software.")
+
+
+def add_project(projects):
+    print("Let's add a new project")
+    name = input("Name: ")
+    start_date = input("Start date (dd/mm/yy): ")
+    priority = int(input("Priority: "))
+    cost_estimate = float(input("Cost_estimate: $"))
+    completion_percentage = int(input("Percent Complete: "))
+    projects.append(Project(name, start_date, priority, cost_estimate, completion_percentage))
 
 
 def load_projects(filename, projects):
