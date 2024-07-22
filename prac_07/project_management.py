@@ -29,13 +29,13 @@ def main():
         elif choice == "S":
             pass
         elif choice == "D":
-            pass
+            display_projects(projects)
         elif choice == "F":
             pass
         elif choice == "A":
             add_project(projects)
         elif choice == "U":
-            pass
+            update_project(projects)
         else:
             print("Invalid Choice")
         print(MENU)
@@ -43,7 +43,28 @@ def main():
     print("Thank you for using custom-built project management software.")
 
 
+def update_project(projects):
+    for i, project in enumerate(projects):
+        print(f"{i} {project}")
+    project_choice = int(input("Project choice: "))
+    print(projects[project_choice])
+    projects[project_choice].completion_percentage = int(input("New Percentage: "))
+    projects[project_choice].priority = int(input("Priority: "))
+
+
+def display_projects(projects):
+    print("Incomplete projects:")
+    for project in projects:
+        if not project.is_complete():
+            print(project)
+    print("Complete projects:")
+    for project in projects:
+        if project.is_complete():
+            print(project)
+
+
 def add_project(projects):
+    """Gets new project detail and add it to projects."""
     print("Let's add a new project")
     name = input("Name: ")
     start_date = input("Start date (dd/mm/yy): ")
