@@ -25,9 +25,11 @@ def main():
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "L":
-            pass
+            filename = input("Filename: ")
+            load_projects(filename, projects)
         elif choice == "S":
-            pass
+            filename = input("Filename: ")
+            save_projects(filename, projects)
         elif choice == "D":
             display_projects(projects)
         elif choice == "F":
@@ -40,6 +42,9 @@ def main():
             print("Invalid Choice")
         print(MENU)
         choice = input(">>> ").upper()
+    save_query = f"Would you like to save to {DEFAULT_FILENAME}?".upper()
+    if save_query == "" or save_query == "Y" or save_query == "YES":
+        save_projects(DEFAULT_FILENAME, projects)
     print("Thank you for using custom-built project management software.")
 
 
@@ -81,6 +86,17 @@ def load_projects(filename, projects):
             parts = line.strip().split("\t")
             projects.append(Project(parts[0], parts[1], int(parts[2]), float(parts[3]), int(parts[4])))
     print(f"Loaded {len(projects)} projects from {filename}")
+
+
+def save_projects(filename, projects):
+    """Save projects to filename seperated by \t character."""
+    with open(filename, "w") as out_file:
+        # Print header line.
+        print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage", file=out_file)
+        for project in projects:
+            line = "\t".join(str(part) for part in project)
+            print(line, file=out_file)
+    print(f"Saved {len(projects)} projects to {filename}")
 
 
 main()
