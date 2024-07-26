@@ -36,9 +36,8 @@ class ConvertMilesToKmApp(App):
             result = float(self.root.ids.input_km.text) + increment
         except ValueError:
             result = 0.0 + increment
-        self.message = str(result)
-        # From functionality with button
-        # self.root.ids.input_km.text = str(result)
+        self.root.ids.input_km.text = str(result)
+        self.handle_calculate()
 
 
 # create and start the App running
