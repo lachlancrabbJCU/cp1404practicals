@@ -10,7 +10,7 @@ from kivy.properties import StringProperty
 MILES_TO_KM = 1.60934
 
 
-class MVCDemo(App):
+class ConvertMilesToKmApp(App):
     """The class variable in the app is the 'model'."""
     message = StringProperty()
 
@@ -24,7 +24,6 @@ class MVCDemo(App):
 
     def handle_calculate(self):
         """Handle changes to the text input by updating the model from the view."""
-        # value = self.get_validated_miles()
         try:
             result = float(self.root.ids.input_km.text) * MILES_TO_KM
         except ValueError:
@@ -32,12 +31,15 @@ class MVCDemo(App):
         self.message = str(result)
 
     def handle_increment(self, increment):
+        """Handle button presses to increment float of text input based on increment."""
         try:
             result = float(self.root.ids.input_km.text) + increment
         except ValueError:
             result = 0.0 + increment
-        self.root.ids.input_km.text = str(result)
+        self.message = str(result)
+        # From functionality with button
+        # self.root.ids.input_km.text = str(result)
 
 
 # create and start the App running
-MVCDemo().run()
+ConvertMilesToKmApp().run()
