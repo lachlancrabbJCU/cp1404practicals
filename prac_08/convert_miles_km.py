@@ -24,20 +24,21 @@ class ConvertMilesToKmApp(App):
 
     def handle_calculate(self):
         """Handle changes to the text input by updating the model from the view."""
-        try:
-            result = float(self.root.ids.input_km.text) * MILES_TO_KM
-        except ValueError:
-            result = 0.0
+        result = self.get_validated_miles() * MILES_TO_KM
         self.message = str(result)
 
     def handle_increment(self, increment):
         """Handle button presses to increment float of text input based on increment."""
-        try:
-            result = float(self.root.ids.input_km.text) + increment
-        except ValueError:
-            result = 0.0 + increment
+        result = self.get_validated_miles() + increment
         self.root.ids.input_km.text = str(result)
         self.handle_calculate()
+
+    def get_validated_miles(self):
+        """Return a float of text field or 0.0 if ValueError"""
+        try:
+            return float(self.root.ids.input_km.text)
+        except ValueError:
+            return 0.0
 
 
 # create and start the App running
