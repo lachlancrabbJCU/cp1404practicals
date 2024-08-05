@@ -4,7 +4,7 @@ from car import Car
 import random
 
 class UnreliableCar(Car):
-    """..."""
+    """Represent a Taxi object."""
 
     def __init__(self, name, fuel, reliability: float):
         """Initialise a UnreliableCar instance, based on parent class Car."""
